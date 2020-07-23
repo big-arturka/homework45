@@ -1,0 +1,36 @@
+body {
+    background: #FFF5EE;
+}
+
+.form {
+    text-align: center;
+    padding: 80px;
+    margin-top: 50px;
+    border-radius: 20px;
+    background: #AFEEEE;
+}
+
+.form-area {
+    width: 80%;
+    height: 50px;
+}
+
+.card {
+    margin: 20px;
+    display: inline-block;
+}
+
+.main_page {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 20px;
+    width: 100%;
+    height: auto;
+    background: #AFEEEE;
+}
+
+.new_task {
+    text-align: center;
+    margin: 20px;
+}

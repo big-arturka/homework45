@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from webapp.models import Task
+from webapp.models import Task, STATUS_CHOICES
 
 
 def index_view(request):
@@ -11,11 +11,16 @@ def index_view(request):
 
 def task_create_view(request):
     if request.method == 'GET':
-        return render(request, 'task_create.html')
+        return render(request, 'task_create.html',
+                      context={'status_choices': STATUS_CHOICES})
     elif request.method == 'POST':
-        context = {
-            'title': request.POST.get('title'),
-            'content': request.POST.get('content'),
-            'author': request.POST.get('author')
-        }
+        title = request.POST.get('title')
+        status = request.POST.get('status')
+        if request.POST.get('completion_date') == '':
+            task = Task.objects.create(title=title, status=status)
+        else:
+            completion_date = request.POST.get('completion_date')
+            task = Task.objects.create(title=title, status=status,
+                                       completion_date=completion_date)
+        context = {'task': task}
         return render(request, 'task_view.html', context)
