@@ -5,6 +5,7 @@ STATUS_CHOICES = [('new', 'Новая'), ('in_progress', 'В процессе'),
 
 class Task(models.Model):
     title = models.CharField(max_length=200, verbose_name='Описание')
+    description = models.TextField(max_length=200, null=True, blank=True, verbose_name='Подробное описание')
     status = models.TextField(max_length=3000, verbose_name='Статус', default='new', choices=STATUS_CHOICES)
     completion_date = models.DateField(auto_now_add=False, null=True, blank=True, verbose_name='Время завершения')
 
