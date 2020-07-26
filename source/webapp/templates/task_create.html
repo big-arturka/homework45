@@ -6,7 +6,7 @@ New Task
 {% block content %}
     <div class="form">
         <h1>Add new task</h1>
-        <form action="/task/add/" method="post">
+        <form action="{% url "task_create" %}" method="post">
             {% csrf_token %}
 
             <label>Title:</label><br/>
@@ -19,10 +19,14 @@ New Task
                 {% endfor %}
             </select><br/>
 
+            <label for="id-description">Description:</label><br/>
+            <textarea class="form-area" name="description" id="id-description" cols="30" rows="10"></textarea></br>
+
+
             <label>Completion date:</label><br/>
             <input class="form-area" type="text" name="completion_date"/><br/>
             <br/>
-            <input class="btn btn-info" type="submit" value="Send"/>
+            <input type="submit" class="btn btn-info" value="Create!"/>
         </form>
     </div>
 {% endblock %}
