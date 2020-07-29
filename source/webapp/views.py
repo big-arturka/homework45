@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from webapp.models import Task, STATUS_CHOICES
 from django.http import HttpResponseNotAllowed
-from django.urls import reverse_lazy
 
 
 def index_view(request):
@@ -28,6 +27,22 @@ def task_create_view(request):
         completion_date = request.POST.get('completion_date')
         task = Task.objects.create(title=title, status=status,
                                    completion_date=completion_date, description=description)
+        return redirect('task_view', pk=task.pk)
+    else:
+        return HttpResponseNotAllowed(permitted_methods=['GET', 'POST'])
+
+
+def task_update_view(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    if request.method == 'GET':
+        return render(request, 'task_update.html',
+                      context={'task': task})
+    elif request.method == 'POST':
+        task.title = request.POST.get('title')
+        task.status = request.POST.get('status')
+        task.description = request.POST.get('description')
+        task.completion_date = request.POST.get('completion_date')
+        task.save()
         return redirect('task_view', pk=task.pk)
     else:
         return HttpResponseNotAllowed(permitted_methods=['GET', 'POST'])

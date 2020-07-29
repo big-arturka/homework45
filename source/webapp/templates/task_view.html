@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}Task{% endblock %}
 
+{% block menu %}
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'task_update' task.pk %}">Edit</a>
+    </li>
+{% endblock %}
+
+
 {% block content %}
 <div class="container">
     <div class="form">
@@ -8,7 +15,7 @@
         <h2>Task description: {{ task.title }}</h2>
         <p>Status: {{ task.status }}</p>
         <p>Completion date: {{ task.completion_date }}</p>
-        <p class="description"><pre>Full description: {{ task.description }}</pre></p>
+        <p class="description">Full description: {{ task.description }}</p>
         <a href="{% url "index" %}" class="btn btn-info"  >Back to main page</a>
     </div>
 </div>
