@@ -10,15 +10,9 @@
 {% block content %}
     <div class="form">
         <h1>Update Task</h1>
-        <form action="{% url "task_update"  task.pk %}" method="post">
-            {% csrf_token %}
 
-            {% include 'partial/form_field.html' with field=form.title %}
-            {% include 'partial/form_field.html' with field=form.description %}
-            {% include 'partial/form_field.html' with field=form.status %}
-            {% include 'partial/form_field.html' with field=form.completion_date %}
+        {% url 'task_update' pk=task.pk as action_url %}
+        {% include 'partial/form.html' with action_url=action_url form_method='post' button_text='Update' %}
 
-            <input type="submit" class="btn btn-info" value="Update"/>
-        </form>
     </div>
 {% endblock %}
