@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Update task{% endblock %}
 
+{% block menu %}
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'task_view' task.pk %}">Cancel</a>
+    </li>
+{% endblock %}
 
 {% block content %}
     <div class="form">
@@ -8,24 +13,12 @@
         <form action="{% url "task_update"  task.pk %}" method="post">
             {% csrf_token %}
 
-            <label>Title:</label><br/>
-            <input class="form-area" value="{{ task.title }}" type="text" name="title"/><br/>
+            {% include 'partial/form_field.html' with field=form.title %}
+            {% include 'partial/form_field.html' with field=form.description %}
+            {% include 'partial/form_field.html' with field=form.status %}
+            {% include 'partial/form_field.html' with field=form.completion_date %}
 
-            <label for="id-status">Status:</label><br/>
-            <select class="form-area" name="status" id="id-status">
-                {% for value, choice in status_choices %}
-                    <option value="{{ value }}">{{ choice }}</option>
-                {% endfor %}
-            </select><br/>
-
-            <label for="id-description">Description:</label><br/>
-            <textarea class="form-area" name="description" id="id-description" cols="30" rows="10"></textarea></br>
-
-
-            <label>Completion date:</label><br/>
-            <input class="form-area"  type="text" name="completion_date"/><br/>
-            <br/>
-            <input type="submit" class="btn btn-info" value="Create!"/>
+            <input type="submit" class="btn btn-info" value="Update"/>
         </form>
     </div>
 {% endblock %}

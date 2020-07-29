@@ -9,23 +9,11 @@ New Task
         <form action="{% url "task_create" %}" method="post">
             {% csrf_token %}
 
-            <label>Title:</label><br/>
-            <input class="form-area" type="text" name="title"/><br/>
+            {% include 'partial/form_field.html' with field=form.title %}
+            {% include 'partial/form_field.html' with field=form.description %}
+            {% include 'partial/form_field.html' with field=form.status %}
+            {% include 'partial/form_field.html' with field=form.completion_date %}
 
-            <label for="id-status">Status:</label><br/>
-            <select class="form-area" name="status" id="id-status">
-                {% for value, choice in status_choices %}
-                    <option value="{{ value }}">{{ choice }}</option>
-                {% endfor %}
-            </select><br/>
-
-            <label for="id-description">Description:</label><br/>
-            <textarea class="form-area" name="description" id="id-description" cols="30" rows="10"></textarea></br>
-
-
-            <label>Completion date:</label><br/>
-            <input class="form-area" type="text" name="completion_date"/><br/>
-            <br/>
             <input type="submit" class="btn btn-info" value="Create!"/>
         </form>
     </div>
