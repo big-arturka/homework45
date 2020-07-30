@@ -1,282 +1,42 @@
 [
 {
   "model": "webapp.task",
-  "pk": 1,
+  "pk": 55,
   "fields": {
-    "title": "Test",
-    "description": null,
-    "status": "in_progress",
+    "title": "Task 1",
+    "description": "This is full description",
+    "status": "new",
+    "completion_date": null
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 56,
+  "fields": {
+    "title": "Task 2",
+    "description": "This is full description",
+    "status": "new",
+    "completion_date": null
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 57,
+  "fields": {
+    "title": "Task 3",
+    "description": "This is full description",
+    "status": "done",
     "completion_date": "2020-07-23"
   }
 },
 {
   "model": "webapp.task",
-  "pk": 2,
+  "pk": 58,
   "fields": {
-    "title": "Task: 0",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci assumenda cupiditate delectus dolores doloribus ducimus, et impedit in iusto maxime, minima nam odio officia pariatur provident quas saepe ut!",
-    "status": "new",
-    "completion_date": null
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 3,
-  "fields": {
-    "title": "Task: 1",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci assumenda cupiditate delectus dolores doloribus ducimus, et impedit in iusto maxime, minima nam odio officia pariatur provident quas saepe ut!",
-    "status": "new",
-    "completion_date": null
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 4,
-  "fields": {
-    "title": "Task: 2",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci assumenda cupiditate delectus dolores doloribus ducimus, et impedit in iusto maxime, minima nam odio officia pariatur provident quas saepe ut!",
-    "status": "new",
-    "completion_date": null
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 5,
-  "fields": {
-    "title": "Task: 3",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci assumenda cupiditate delectus dolores doloribus ducimus, et impedit in iusto maxime, minima nam odio officia pariatur provident quas saepe ut!",
-    "status": "new",
-    "completion_date": null
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 6,
-  "fields": {
-    "title": "Task: 4",
-    "description": null,
-    "status": "new",
-    "completion_date": null
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 7,
-  "fields": {
-    "title": "Task: 5",
-    "description": null,
-    "status": "new",
-    "completion_date": null
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 8,
-  "fields": {
-    "title": "Task: 6",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci assumenda cupiditate delectus dolores doloribus ducimus, et impedit in iusto maxime, minima nam odio officia pariatur provident quas saepe ut!",
-    "status": "new",
-    "completion_date": null
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 9,
-  "fields": {
-    "title": "Task: 7",
-    "description": null,
-    "status": "new",
-    "completion_date": null
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 10,
-  "fields": {
-    "title": "Task: 8",
-    "description": null,
-    "status": "new",
-    "completion_date": null
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 11,
-  "fields": {
-    "title": "Task: 9",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci assumenda cupiditate delectus dolores doloribus ducimus, et impedit in iusto maxime, minima nam odio officia pariatur provident quas saepe ut!",
-    "status": "new",
-    "completion_date": null
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 21,
-  "fields": {
-    "title": "afefas",
-    "description": null,
-    "status": "new",
-    "completion_date": "2020-12-15"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 22,
-  "fields": {
-    "title": "afefas",
-    "description": null,
-    "status": "new",
-    "completion_date": "2020-12-15"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 23,
-  "fields": {
-    "title": "asdasd",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci assumenda cupiditate delectus dolores doloribus ducimus, et impedit in iusto maxime, minima nam odio officia pariatur provident quas saepe ut!",
+    "title": "Task 4",
+    "description": "This is full description",
     "status": "in_progress",
-    "completion_date": "2020-12-15"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 24,
-  "fields": {
-    "title": "afefas",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci assumenda cupiditate delectus dolores doloribus ducimus, et impedit in iusto maxime, minima nam odio officia pariatur provident quas saepe ut!",
-    "status": "new",
-    "completion_date": "2020-12-12"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 25,
-  "fields": {
-    "title": "asdasd",
-    "description": null,
-    "status": "new",
-    "completion_date": null
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 26,
-  "fields": {
-    "title": "title",
-    "description": null,
-    "status": "done",
-    "completion_date": "2020-12-12"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 27,
-  "fields": {
-    "title": "This id new task",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci assumenda cupiditate delectus dolores doloribus ducimus, et impedit in iusto maxime, minima nam odio officia pariatur provident quas saepe ut!",
-    "status": "new",
-    "completion_date": "2019-02-02"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 28,
-  "fields": {
-    "title": "my second task",
-    "description": null,
-    "status": "new",
-    "completion_date": null
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 29,
-  "fields": {
-    "title": "asdasd",
-    "description": "",
-    "status": "done",
-    "completion_date": "2020-12-15"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 30,
-  "fields": {
-    "title": "asdasd",
-    "description": "",
-    "status": "in_progress",
-    "completion_date": "2020-12-15"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 31,
-  "fields": {
-    "title": "Work",
-    "description": "afadsgdc\r\nadsfadsv\r\nasv\r\ndasvd\r\nvav\r\n",
-    "status": "new",
-    "completion_date": "2020-12-15"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 32,
-  "fields": {
-    "title": "third",
-    "description": "asdasdasf\r\nasdgfatevdc\r\nasvarc\r\ncarv",
-    "status": "new",
-    "completion_date": "2020-12-15"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 33,
-  "fields": {
-    "title": "asdasd",
-    "description": "            saminac\r\nccejbakwev\r\nasdndvawc\r\nWNVBREJ",
-    "status": "new",
-    "completion_date": "2020-12-15"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 34,
-  "fields": {
-    "title": "afefas",
-    "description": "asdsd\r\n\r\nasd\r\nasda\r\nasd",
-    "status": "new",
-    "completion_date": "2020-12-15"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 35,
-  "fields": {
-    "title": "afefas",
-    "description": "asdsd\r\n\r\nasd\r\nasda\r\nasd",
-    "status": "new",
-    "completion_date": "2020-12-15"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 36,
-  "fields": {
-    "title": "afefas",
-    "description": "asdsd\r\n\r\nasd\r\nasda\r\nasd",
-    "status": "new",
-    "completion_date": "2020-12-15"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 37,
-  "fields": {
-    "title": "afefas",
-    "description": "asdsd\r\n\r\nasd\r\nasda\r\nasd",
-    "status": "new",
-    "completion_date": "2020-12-15"
+    "completion_date": "2020-08-08"
   }
 },
 {

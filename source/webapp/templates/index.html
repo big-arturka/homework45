@@ -10,7 +10,7 @@
         {% csrf_token %}
         {% for task in tasks %}
             <div class="card" style="width: 18rem; border-radius: 10px; background: #F5F5DC">
-                <p><input type="checkbox" name="item" value="{{ task.pk }}"></p>
+                <p><input style="width: 20px; height: 20px" type="checkbox" name="item" value="{{ task.pk }}">Mark for deletion</p>
                 <div class="card-body">
                     <h5 class="card-title"><a href="{% url "task_view" task.pk %}">Task description: {{ task.title }}</a></h5>
                     <h5 class="card-title">Task status: {{ task.get_status_display }}</h5>

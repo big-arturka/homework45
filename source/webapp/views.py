@@ -69,8 +69,5 @@ def task_delete_view(request, pk):
 def bulk_delete_view(request):
     Task.objects.filter(id__in=request.POST.getlist('item')).delete()
     data = Task.objects.all()
-    return render(request, 'index.html', context={
-        'tasks': data
-    })
-
+    return redirect('index')
 
