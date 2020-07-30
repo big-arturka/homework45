@@ -9,10 +9,10 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Вы уверены что хотите удалить задачу {{ task.title }}</h1>
+    <h1>Are you sure you want to delete the task "{{ task.title }}"?</h1>
     <form action="{% url 'task_delete' task.pk %}" method="post">
         {% csrf_token %}
-        <p><input type="submit"  value="Yes"></p>
-        <a class="nav-link" href="{% url 'task_view' task.pk %}">Cancel</a>
+        <p><input type="submit" class="btn btn-info" value="Yes"></p>
+        <a class="nav-link btn btn-info" style="width: 50px; height: 36px" href="{% url 'task_view' task.pk %}">No</a>
     </form>
 {% endblock %}

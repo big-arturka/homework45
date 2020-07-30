@@ -7,20 +7,14 @@
     <div class="main_page">
     <h1>To-Do List</h1>
         {% for task in tasks %}
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem; border-radius: 10px; background: #F5F5DC">
                 <div class="card-body">
                     <h5 class="card-title"><a href="{% url "task_view" task.pk %}">Task description: {{ task.title }}</a></h5>
                     <h5 class="card-title">Task status: {{ task.get_status_display }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Task id: {{ task.pk }}</h6>
-                    {% if task.completion_date == None %}
-                        <h6 class="card-subtitle mb-2 text-muted">Completion date: Date missing</h6>
-                    {% else %}
-                        <h6 class="card-subtitle mb-2 text-muted">Completion date: {{ task.completion_date }}</h6>
-                    {% endif %}
                 </div>
-            <p><a href="{% url 'task_view' task.pk %}">More...</a></p>
-            <p><a href="{% url 'task_update' task.pk %}">Edit</a></p>
-            <p><a href="{% url 'task_delete' task.pk %}">Delete</a></p>
+            <p><a class="btn btn-info" style="margin: 0 auto" href="{% url 'task_view' task.pk %}">More...</a></p>
+            <p><a class="btn btn-info" style="margin: 0 auto" href="{% url 'task_update' task.pk %}">Edit</a></p>
+            <p><a class="btn btn-info" style="margin: 0 auto" href="{% url 'task_delete' task.pk %}">Delete</a></p>
             </div>
         {% endfor %}
     </div>
