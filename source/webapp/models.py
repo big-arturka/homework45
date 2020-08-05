@@ -25,7 +25,7 @@ class Task_type(models.Model):
 
 class Task(models.Model):
     title = models.CharField(max_length=200, verbose_name='Описание')
-    description = models.TextField(max_length=200, null=True, blank=True, verbose_name='Подробное описание')
+    description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Подробное описание')
     status = models.ForeignKey('webapp.Status', related_name='statuses', on_delete=models.PROTECT, verbose_name='Статус')
     type = models.ForeignKey('webapp.Task_type', related_name='types', on_delete=models.PROTECT, verbose_name='Тип')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')

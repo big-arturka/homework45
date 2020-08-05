@@ -2,29 +2,27 @@
 {% block title %}Task{% endblock %}
 
 {% block menu %}
-    <li class="nav-item active">
-        <a class="nav-link" href="{% url 'task_update' task.pk %}">Edit</a>
-    </li>
-    <li class="nav-item active">
-        <a class="nav-link" href="{% url 'task_delete' task.pk %}">Delete</a>
-    </li>
 {% endblock %}
 
 
 {% block content %}
 <div class="container">
-    <div class="form">
-        <h1>Task id:{{ task.pk }}</h1>
-        <h2>Task description: {{ task.title }}</h2>
-        <p>Status: {{ task.status }}</p>
-        {% if task.completion_date == None %}
-            <h6 class="card-subtitle mb-2 text-muted">Completion date: Date missing</h6>
-        {% else %}
-            <h6 class="card-subtitle mb-2 text-muted">Completion date: {{ task.completion_date }}</h6>
-        {% endif %}
-        <p class="description">Full description: {{ task.description }}</p>
-        <p><a class="btn btn-info" href="{% url 'task_delete' task.pk %}">Delete</a></p>
-        <a href="{% url "index" %}" class="btn btn-info"  >Back to main page</a>
+    <h1 class="title">Task View</h1>
+    <div class="card text-center">
+        <div class="card-header">
+            <h4 class="card-title">{{ task.title }}</h4>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Описание: {{ task.description }}</p>
+            <p class="card-text"><p>Статус: {{ task.status }}</p>
+            <p class="card-text"><p>Тип: {{ task.type }}</p>
+            <a href="{% url 'task_update' task.pk %}" class="btn btn-primary">Изменить</a>
+            <a href="{% url 'task_delete' task.pk %}" class="btn btn-primary">Удалить</a>
+            <a href="{% url 'index' %}" class="btn btn-primary" >На главную</a>
+        </div>
+        <div class="card-footer text-muted">
+            Дата создания: {{ task.created_at }}
+        </div>
     </div>
 </div>
 {% endblock %}

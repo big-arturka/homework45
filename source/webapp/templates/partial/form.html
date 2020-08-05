@@ -3,8 +3,8 @@
     {% include 'partial/form_field.html' with field=form.title %}
     {% include 'partial/form_field.html' with field=form.description %}
     {% include 'partial/form_field.html' with field=form.status %}
-    {% include 'partial/form_field.html' with field=form.completion_date %}
+    {% include 'partial/form_field.html' with field=form.type %}
 
 <input type="submit" class="btn btn-info" value="{{ button_text|default:'Submit' }}"/>
-<a href="{% url "index" %}" class="btn btn-info"  >Back to main page</a>
+<a href="{% url "index" %}" class="btn btn-info">На главную</a>
 </form>
