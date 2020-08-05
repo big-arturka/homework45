@@ -1,0 +1,128 @@
+[
+{
+  "model": "webapp.status",
+  "pk": 1,
+  "fields": {
+    "status": "New"
+  }
+},
+{
+  "model": "webapp.status",
+  "pk": 2,
+  "fields": {
+    "status": "Done"
+  }
+},
+{
+  "model": "webapp.status",
+  "pk": 3,
+  "fields": {
+    "status": "In progress"
+  }
+},
+{
+  "model": "webapp.task_type",
+  "pk": 1,
+  "fields": {
+    "type": "Bug"
+  }
+},
+{
+  "model": "webapp.task_type",
+  "pk": 2,
+  "fields": {
+    "type": "Task"
+  }
+},
+{
+  "model": "webapp.task_type",
+  "pk": 3,
+  "fields": {
+    "type": "Enhancement"
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 1,
+  "fields": {
+    "title": "Task 1",
+    "description": "Description 1",
+    "status": 1,
+    "type": 2,
+    "created_at": "2020-08-05T11:44:51.234Z"
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 2,
+  "fields": {
+    "title": "Task 2",
+    "description": "Description 2",
+    "status": 2,
+    "type": 1,
+    "created_at": "2020-08-05T11:45:06.817Z"
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 3,
+  "fields": {
+    "title": "Task 3",
+    "description": "Description 3",
+    "status": 3,
+    "type": 3,
+    "created_at": "2020-08-05T11:45:20.470Z"
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 4,
+  "fields": {
+    "title": "Task 4",
+    "description": "Description 4",
+    "status": 1,
+    "type": 1,
+    "created_at": "2020-08-05T11:45:32.906Z"
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 5,
+  "fields": {
+    "title": "Task 5",
+    "description": "Description 5",
+    "status": 3,
+    "type": 2,
+    "created_at": "2020-08-05T11:45:52.485Z"
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 6,
+  "fields": {
+    "title": "Task 6",
+    "description": "Description 6",
+    "status": 1,
+    "type": 3,
+    "created_at": "2020-08-05T11:46:07.478Z"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$5naAt5vdjIwM$N1v7aJuuN2iqpTfEQHauAyA0Yieu2vLJMcyJ7RDl3zo=",
+    "last_login": "2020-08-05T11:03:11.784Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@admin.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2020-08-05T11:03:07.025Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
