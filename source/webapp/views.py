@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from webapp.models import Task, STATUS_CHOICES
+from webapp.models import Task
 from django.http import HttpResponseNotAllowed
 from webapp.forms import TaskForm
 
