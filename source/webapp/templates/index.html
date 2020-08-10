@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ task.title }}</h5>
                     <p class="card-text">Статус: {{ task.status }}</p>
-                    <p class="card-text">Тип: {{ task.type }}</p>
+                    <p class="card-text"><p>Тип: {% for item in task.task_type.all %}{{ item.type }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
                     <a href="{% url 'task_view' task.pk %}" class="btn btn-primary">Подробнее</a>
                     <a href="{% url 'task_update' task.pk %}" class="btn btn-primary">Изменить</a>
                     <a href="{% url 'task_delete' task.pk %}" class="btn btn-primary">Удалить</a>

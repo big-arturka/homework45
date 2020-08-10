@@ -28,18 +28,22 @@ class TaskView(TemplateView):
         return context
 
 
-class TaskCreateView(View):
-    def get(self, request):
-        return render(request, 'task_create.html',
-                      context={'form': TaskForm()})
+class TaskCreateView(FormView):
+    template_name = 'task_create.html'
+    form_class = TaskForm
 
-    def post(self, request):
-        form = TaskForm(data=request.POST)
-        if form.is_valid():
-            task = Task.objects.create(**form.cleaned_data)
-            return redirect('task_view', pk=task.pk)
-        else:
-            return render(request, 'task_create.html', context={'form': form})
+    def form_valid(self, form):
+        data = {}
+        types = form.cleaned_data.pop('type')
+        for key, value in form.cleaned_data.items():
+            if value is not None:
+                data[key] = value
+        self.task = Task.objects.create(**data)
+        self.task.task_type.set(types)
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('task_view', kwargs={'pk': self.task.pk})
 
 
 class TaskUpdateView(FormView):
