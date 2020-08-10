@@ -33,10 +33,9 @@ body {
     border-radius: 15px;
 }
 
-.form-select {
-    width: 90%;
-    height: 45px;
-    border-radius: 15px;
+.radio-btn {
+    height: auto;
+    text-align: center;
 }
 
 .category_link {

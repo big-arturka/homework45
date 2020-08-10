@@ -10,5 +10,5 @@ class TaskForm(forms.Form):
                                   widget=forms.Textarea(attrs={'class': 'form-area'}))
     status = forms.ModelChoiceField(queryset=Status.objects.all(), required=True, label='Статус:', empty_label=None,
                                     widget=forms.Select(attrs={'class': 'form-select'}))
-    type = forms.ModelChoiceField(queryset=Task_type.objects.all(), required=True, label='Тип:', empty_label=None,
-                                  widget=forms.Select(attrs={'class': 'form-select'}))
+    type = forms.ModelMultipleChoiceField(queryset=Task_type.objects.all(), required=True, label='Тип:',
+                                          widget=forms.CheckboxSelectMultiple(attrs={'class': 'radio-btn'}))
