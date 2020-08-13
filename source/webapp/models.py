@@ -1,4 +1,5 @@
 from django.db import models
+from webapp.validators import MinLengthValidator, name_char, descriptions_validator
 
 
 class Status(models.Model):
@@ -24,8 +25,9 @@ class Task_type(models.Model):
 
 
 class Task(models.Model):
-    title = models.CharField(max_length=200, verbose_name='Описание')
-    description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Подробное описание')
+    title = models.CharField(max_length=200, verbose_name='Описание', validators=[name_char, MinLengthValidator(5)])
+    description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Подробное описание',
+                                   validators=[descriptions_validator])
     status = models.ForeignKey('webapp.Status', related_name='statuses', on_delete=models.PROTECT, verbose_name='Статус')
     task_type = models.ManyToManyField('webapp.Task_type', related_name='types', verbose_name='Тип')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
