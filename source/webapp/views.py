@@ -1,20 +1,39 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
 from webapp.models import Task
-from webapp.forms import TaskForm
-from django.views.generic import View, TemplateView, FormView
+from webapp.forms import TaskForm, SimpleSearchForm
+from django.views.generic import View, TemplateView, FormView, ListView
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = 'index.html'
+    context_object_name = 'tasks'
+    paginate_by = 2
+    paginate_orphans = 0
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        task = Task.objects.all()
+    def get_context_data(self, *, object_list=None, **kwargs):
+        form = SimpleSearchForm(data=self.request.GET)
+        if form.is_valid():
+            search = form.cleaned_data['search']
+            kwargs['search'] = search
+        kwargs['form'] = form
+        return super().get_context_data(object_list=object_list, **kwargs)
 
-        context['tasks'] = task
-        return context
+    def get_queryset(self):
+        data = Task.objects.all()
+
+        if not self.request.GET:
+            data = Task.objects.all()
+
+        form = SimpleSearchForm(data=self.request.GET)
+        if form.is_valid():
+            search = form.cleaned_data['search']
+            if search:
+                data = data.filter(Q(title__icontains=search) | Q(author__icontains=search))
+
+        return data
 
 
 class TaskView(TemplateView):

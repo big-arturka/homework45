@@ -11,12 +11,6 @@ class TaskForm(forms.ModelForm):
                    'status': forms.Select(attrs={'class': 'form-select'}),
                    'task_type': forms.CheckboxSelectMultiple(attrs={'class': 'radio-btn'})}
 
-    #
-    # title = forms.CharField(max_length=200, required=True, label='Название:',
-    #                         widget=forms.TextInput(attrs={'class': 'form-input'}))
-    # description = forms.CharField(max_length=2000, required=False, label='Подробное описание:',
-    #                               widget=forms.Textarea(attrs={'class': 'form-area'}))
-    # status = forms.ModelChoiceField(queryset=Status.objects.all(), required=True, label='Статус:', empty_label=None,
-    #                                 widget=forms.Select(attrs={'class': 'form-select'}))
-    # type = forms.ModelMultipleChoiceField(queryset=Task_type.objects.all(), required=True, label='Тип:',
-    #                                       widget=forms.CheckboxSelectMultiple(attrs={'class': 'radio-btn'}))
+
+class SimpleSearchForm(forms.Form):
+    search = forms.CharField(max_length=100, required=False, label="Найти")
