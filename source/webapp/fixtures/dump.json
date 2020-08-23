@@ -47,6 +47,7 @@
   "fields": {
     "title": "Task 1",
     "description": "Description 1",
+    "project": 1,
     "status": 1,
     "created_at": "2020-08-05T11:44:51.234Z",
     "updated_at": "2020-08-17T08:33:21.038Z",
@@ -60,11 +61,12 @@
   "model": "webapp.task",
   "pk": 2,
   "fields": {
-    "title": "Task 2",
+    "title": "Task asdaff",
     "description": "Description 2",
+    "project": 2,
     "status": 2,
     "created_at": "2020-08-05T11:45:06.817Z",
-    "updated_at": "2020-08-17T08:33:21.038Z",
+    "updated_at": "2020-08-23T09:24:32.022Z",
     "task_type": [
       2,
       3
@@ -77,6 +79,7 @@
   "fields": {
     "title": "Task testteas",
     "description": "Description 3",
+    "project": 1,
     "status": 3,
     "created_at": "2020-08-05T11:45:20.470Z",
     "updated_at": "2020-08-17T12:37:22.164Z",
@@ -91,9 +94,10 @@
   "fields": {
     "title": "Task Task",
     "description": "Description 4",
+    "project": 2,
     "status": 3,
     "created_at": "2020-08-05T11:45:32.906Z",
-    "updated_at": "2020-08-17T12:35:32.455Z",
+    "updated_at": "2020-08-23T09:24:16.115Z",
     "task_type": [
       3
     ]
@@ -105,6 +109,7 @@
   "fields": {
     "title": "Task Test",
     "description": "Description 5",
+    "project": 1,
     "status": 2,
     "created_at": "2020-08-05T11:45:52.485Z",
     "updated_at": "2020-08-17T09:11:46.185Z",
@@ -120,6 +125,7 @@
   "fields": {
     "title": "Task bug",
     "description": "Description 6",
+    "project": 1,
     "status": 1,
     "created_at": "2020-08-05T11:46:07.478Z",
     "updated_at": "2020-08-17T09:16:56.786Z",
@@ -129,11 +135,47 @@
   }
 },
 {
+  "model": "webapp.task",
+  "pk": 7,
+  "fields": {
+    "title": "title",
+    "description": "test title description",
+    "project": 1,
+    "status": 1,
+    "created_at": "2020-08-19T11:19:44.970Z",
+    "updated_at": "2020-08-19T11:19:44.970Z",
+    "task_type": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 1,
+  "fields": {
+    "name": "Test project 1",
+    "description": "Project description",
+    "start_date": "2020-08-23",
+    "end_date": null
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 2,
+  "fields": {
+    "name": "Test project 2",
+    "description": "Test description project",
+    "start_date": "2020-08-23",
+    "end_date": "2020-08-31"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$150000$5naAt5vdjIwM$N1v7aJuuN2iqpTfEQHauAyA0Yieu2vLJMcyJ7RDl3zo=",
-    "last_login": "2020-08-10T08:47:36.047Z",
+    "last_login": "2020-08-23T09:06:32.157Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
