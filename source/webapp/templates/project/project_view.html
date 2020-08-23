@@ -1,21 +1,3 @@
-{% extends 'base.html' %}
-{% block title %}
-    Main page
-{% endblock %}
-
-{% block search %}
-    <div class="search-form">
-        <form action="{% url 'index' %}" method="GET">
-            {{ form.search }}
-            <input type="submit" value="Найти">
-        </form>
-    </div>
-{% endblock %}
-
-
-{% block content %}
-    <div class="main_page">
-    <h1 class="title">To-Do List</h1>
 
         {% for task in tasks %}
             <div class="card w-100">
@@ -29,13 +11,3 @@
                 </div>
             </div>
         {% endfor %}
-
-    </div>
-    <div class="new_task">
-        <a href="{% url "task_create" %}" class="btn btn-primary btn-lg btn-block">Добавить новую задачу</a>
-    </div>
-    {% if is_paginated %}
-        {% include 'partial/pagination.html' %}
-    {% endif %}
-{% endblock %}
-
