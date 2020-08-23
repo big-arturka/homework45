@@ -1,13 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Project{% endblock %}
 
-        {% for task in tasks %}
-            <div class="card w-100">
-                <div class="card-body">
-                    <h5 class="card-title">{{ task.title }}</h5>
-                    <p class="card-text">Статус: {{ task.status }}</p>
-                    <p class="card-text"><p>Тип: {% for item in task.task_type.all %}{{ item.type }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-                    <a href="{% url 'task_view' task.pk %}" class="btn btn-primary">Подробнее</a>
-                    <a href="{% url 'task_update' task.pk %}" class="btn btn-primary">Изменить</a>
-                    <a href="{% url 'task_delete' task.pk %}" class="btn btn-primary">Удалить</a>
-                </div>
+{% block menu %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <h1 class="title">Project View</h1>
+        <div class="card text-center">
+            <div class="card-header">
+                <h4 class="card-title">{{ project.name }}</h4>
             </div>
-        {% endfor %}
+            <div class="card-body">
+                <p class="card-text">Описание: {{ project.description }}</p>
+                <a href="{% url 'index' %}" class="btn btn-primary" >На главную</a>
+
+                {% for task in tasks %}
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Название задачи: {{ task.title }}</h5>
+                            <p class="card-title">Описание задачи: {{ task.description }}</p>
+                            <p class="card-text"><p>Тип: {% for item in task.task_type.all %}{{ item.type }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                            <a href="{% url 'task_view' project.pk task.pk %}" class="btn btn-primary">Подробнее</a>
+                            <a href="{% url 'task_update' project.pk task.pk %}" class="btn btn-primary">Изменить</a>
+                            <a href="{% url 'task_delete' project.pk task.pk %}" class="btn btn-primary">Удалить</a>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="new_task">
+                    <a href="{% url "task_create" project.pk %}" class="btn btn-primary btn-lg btn-block">Добавить новую задачу</a>
+                </div>
+
+                {% if is_paginated %}
+                    {% include 'partial/pagination.html' %}
+                {% endif %}
+            </div>
+            <div class="card-footer text-muted">
+                Дата создания: {{ project.start_date }}{% if project.end_date %} | Дата завершения: {{ project.end_date }}{% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

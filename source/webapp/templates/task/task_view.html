@@ -16,8 +16,8 @@
             <p class="card-text">Описание: {{ task.description }}</p>
             <p class="card-text"><p>Статус: {{ task.status }}</p>
             <p class="card-text"><p>Тип: {% for item in task.task_type.all %}{{ item.type }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-            <a href="{% url 'task_update' task.pk %}" class="btn btn-primary">Изменить</a>
-            <a href="{% url 'task_delete' task.pk %}" class="btn btn-primary">Удалить</a>
+{#            <a href="{% url 'task_update' project.pk task.pk %}" class="btn btn-primary">Изменить</a>#}
+{#            <a href="{% url 'task_delete' project.pk task.pk %}" class="btn btn-primary">Удалить</a>#}
             <a href="{% url 'index' %}" class="btn btn-primary" >На главную</a>
         </div>
         <div class="card-footer text-muted">

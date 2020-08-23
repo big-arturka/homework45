@@ -23,6 +23,6 @@ class ProjectForm(forms.ModelForm):
         fields = ['name', 'description', 'start_date', 'end_date']
         widgets = {'title': forms.TextInput(attrs={'class': 'form-input'}),
                    'description': forms.Textarea(attrs={'class': 'form-area'}),
-                   'start_date': forms.DateInput,
-                   'end_date': forms.DateInput,
+                   'start_date': forms.SelectDateWidget(attrs={'class': 'date-form'}),
+                   'end_date': forms.SelectDateWidget(attrs={'class': 'date-form'}),
                    }

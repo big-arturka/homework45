@@ -4,20 +4,21 @@
 
 {% block menu %}
     <li class="nav-item active">
-        <a class="nav-link" href="{% url 'task_view' task.pk %}">Отмена</a>
+        <a class="nav-link" href="{% url 'task_view' project.pk task.pk %}">Отмена</a>
     </li>
 {% endblock %}
 
 {% block content %}
 <div class="card">
-    <form action="{% url 'task_delete' task.pk %}" method="post">
+    <form action="{% url 'task_delete' project.pk task.pk %}" method="post">
         {% csrf_token %}
         <h5 class="card-header">Удаление</h5>
         <div class="card-body">
+            <h5 class="card-title">Проект: "{{ project.name }}"</h5>
             <h5 class="card-title">Вы действительно хотите удалить задачу "{{ task.title }}"?</h5>
             <p class="card-text">Описание задачи: {{ task.description }}</p>
             <p><input type="submit" class="btn btn-primary btn-lg btn-block" value="Да"></p>
-            <a class="btn btn-primary btn-lg btn-block"  href="{% url 'task_view' task.pk %}">Нет</a>
+            <a class="btn btn-primary btn-lg btn-block"  href="{% url 'task_view' project.pk task.pk %}">Нет</a>
         </div>
     </form>
 </div>
