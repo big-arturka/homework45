@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from webapp.models import Task, Project
 from webapp.forms import TaskForm
-from django.views.generic import View, FormView, DetailView, CreateView, UpdateView
+from django.views.generic import View, DetailView, CreateView, UpdateView
 
 
 class TaskView(DetailView):
@@ -12,9 +12,8 @@ class TaskView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        pk = self.kwargs.get('pk')
-        task = get_object_or_404(Task, pk=pk)
-        context['task'] = task
+        context['task'] = get_object_or_404(Task, pk=self.kwargs.get('pk'))
+        context['project'] = get_object_or_404(Project, pk=self.kwargs.get('project_pk'))
         return context
 
 
@@ -34,42 +33,19 @@ class TaskCreateView(CreateView):
 class TaskUpdateView(UpdateView):
     model = Task
     template_name = 'task/task_update.html'
-    fields = ['title', 'description', 'project', 'status', 'task_type']
+    form_class = TaskForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        task = get_object_or_404(Task, pk=self.kwargs.get('pk'))
+        project = get_object_or_404(Project, pk=self.kwargs.get('project_pk'))
+        context['task'] = task
+        context['project'] = project
+        return context
 
     def get_success_url(self):
         return reverse('task_view', kwargs={'pk': self.kwargs.get('pk'),
                                             'project_pk': self.kwargs.get('project_pk')})
-
-# class TaskUpdateView(FormView):
-#     template_name = 'task/task_update.html'
-#     form_class = TaskForm
-#
-#     def dispatch(self, request, *args, **kwargs):
-#         self.task = self.get_object(Task)
-#         self.project = self.get_object(Project)
-#         return super().dispatch(request, *args, **kwargs)
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['task'] = self.task
-#         return context
-#
-#     def get_form_kwargs(self):
-#         kwargs = super().get_form_kwargs()
-#         kwargs.pop('initial')
-#         kwargs['instance'] = self.task
-#         return kwargs
-#
-#     def form_valid(self, form):
-#         self.task = form.save()
-#         return super().form_valid(form)
-#
-#     def get_success_url(self):
-#         return reverse('task_view', kwargs={'pk': self.task.pk})
-#
-#     def get_object(self, model):
-#         pk = self.kwargs.get('pk')
-#         return get_object_or_404(model, pk=pk)
 
 
 class TaskDeleteView(View):

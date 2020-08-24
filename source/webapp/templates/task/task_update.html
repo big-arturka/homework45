@@ -10,6 +10,7 @@
 
         {% url 'task_update' project.pk task.pk as action_url %}
         {% include 'partial/form.html' with action_url=action_url form_method='post' button_text='Обновить' %}
+        <a href="{% url 'task_view' project.pk task.pk %}" class="btn btn-primary">Назад</a>
 
     </div>
 {% endblock %}

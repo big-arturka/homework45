@@ -2,6 +2,9 @@
 {% block title %}Project{% endblock %}
 
 {% block menu %}
+    <li>
+        <a href="{% url "task_create" project.pk %}" class="nav-link active">Добавить новую задачу</a>
+    </li>
 {% endblock %}
 
 
@@ -17,7 +20,7 @@
                 <a href="{% url 'index' %}" class="btn btn-primary" >На главную</a>
 
                 {% for task in tasks %}
-                    <div class="card w-100">
+                    <div class="task-card card w-100">
                         <div class="card-body">
                             <h5 class="card-title">Название задачи: {{ task.title }}</h5>
                             <p class="card-title">Описание задачи: {{ task.description }}</p>
