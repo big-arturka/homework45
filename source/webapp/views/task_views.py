@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 
 from webapp.models import Task, Project
 from webapp.forms import TaskForm
@@ -50,6 +50,10 @@ class TaskUpdateView(UpdateView):
 
 
 class TaskDeleteView(DeleteView):
-    template_name = 'task/task_delete.html'
     model = Task
-    success_url = reverse_lazy('index')
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('project_view', kwargs={'pk': self.object.project.pk})

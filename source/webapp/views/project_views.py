@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from webapp.forms import ProjectForm
 from webapp.models import Project
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 
 class IndexView(ListView):
@@ -53,3 +53,10 @@ class ProjectCreateView(CreateView):
         return reverse('project_view', kwargs={'pk': self.object.pk})
 
 
+class ProjectUpdateView(UpdateView):
+    template_name = 'project/project_update.html'
+    form_class = ProjectForm
+    model = Project
+
+    def get_success_url(self):
+        return reverse('project_view', kwargs={'pk': self.object.pk})

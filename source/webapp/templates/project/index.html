@@ -16,6 +16,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Название проекта: {{ project.name }}</h5>
                     <a href="{% url 'project_view' project.pk %}" class="btn btn-primary">Подробнее</a>
+                    <a href="{% url 'project_update' project.pk %}" class="btn btn-primary">Обновить</a>
                 </div>
             </div>
         {% endfor %}
