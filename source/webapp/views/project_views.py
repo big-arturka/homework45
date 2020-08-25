@@ -1,9 +1,9 @@
 from django.core.paginator import Paginator
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from webapp.forms import ProjectForm
 from webapp.models import Project
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
 class IndexView(ListView):
@@ -60,3 +60,9 @@ class ProjectUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('project_view', kwargs={'pk': self.object.pk})
+
+
+class ProjectDeleteView(DeleteView):
+    template_name = 'project/project_delete.html'
+    model = Project
+    success_url = reverse_lazy('index')

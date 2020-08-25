@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <form action="{% url 'project_delete' project.pk %}" method="post">
+        {% csrf_token %}
+        <h5 class="card-header">Удаление</h5>
+        <div class="card-body">
+            <h5 class="card-title">Вы действительно хоитте удалить проект: "{{ project.name }}" ?</h5>
+            <p><input type="submit" class="btn btn-primary btn-lg btn-block" value="Да"></p>
+            <a class="btn btn-primary btn-lg btn-block"  href="{% url 'project_view' project.pk %}">Нет</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
