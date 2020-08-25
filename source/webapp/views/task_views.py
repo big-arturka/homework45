@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from webapp.models import Task, Project
 from webapp.forms import TaskForm
-from django.views.generic import View, DetailView, CreateView, UpdateView
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
 
 class TaskView(DetailView):
@@ -49,14 +49,7 @@ class TaskUpdateView(UpdateView):
                                             'project_pk': self.kwargs.get('project_pk')})
 
 
-class TaskDeleteView(View):
-    def get(self, request, project_pk, pk):
-        task = get_object_or_404(Task, pk=pk)
-        project = get_object_or_404(Project, pk=project_pk)
-        return render(request, 'task/task_delete.html', context={'task': task,
-                                                                 'project': project})
-
-    def post(self, request, project_pk, pk):
-        task = get_object_or_404(Task, pk=pk)
-        task.delete()
-        return redirect('project_view', pk=project_pk)
+class TaskDeleteView(DeleteView):
+    template_name = 'task/task_delete.html'
+    model = Task
+    success_url = reverse_lazy('index')
