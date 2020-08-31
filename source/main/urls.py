@@ -19,6 +19,8 @@ from django.urls import path
 from webapp.views import IndexView, ProjectView, ProjectCreateView, ProjectUpdateView, ProjectDeleteView
 from webapp.views.task_views import TaskCreateView, TaskView, TaskUpdateView, TaskDeleteView
 
+from accounts.views import login_view, logout_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
@@ -30,4 +32,7 @@ urlpatterns = [
     path('project/<int:project_pk>/task/<int:pk>', TaskView.as_view(), name='task_view'),
     path('project/<int:project_pk>/task/<int:pk>/edit/', TaskUpdateView.as_view(), name='task_update'),
     path('project/<int:project_pk>/task/<int:pk>/delete/', TaskDeleteView.as_view(), name='task_delete'),
+
+    path('accounts/login/', login_view, name='login'),
+    path('accounts/logut/', logout_view, name='logout'),
 ]

@@ -19,10 +19,19 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url "index" %}">ToDo</a>
                     </li>
+                    {% if request.user.is_authenticated %}
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'project_create' %}">Добавить новый проект</a>
                     </li>
                     {% block menu %}{% endblock %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                        </li>
+                    {% endif %}
                 </ul>
                 {% block search %}
                 {% endblock %}
