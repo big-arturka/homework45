@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 
 from webapp.forms import ProjectForm
@@ -11,6 +12,7 @@ class IndexView(ListView):
     context_object_name = 'projects'
     paginate_by = 3
     paginate_orphans = 1
+
 
     def get_queryset(self):
         return Project.objects.all()
@@ -48,6 +50,11 @@ class ProjectCreateView(CreateView):
     template_name = 'project/project_create.html'
     form_class = ProjectForm
     model = Project
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return super().dispatch(request, *args, **kwargs)
+        return redirect('login')
 
     def get_success_url(self):
         return reverse('project_view', kwargs={'pk': self.object.pk})
