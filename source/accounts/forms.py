@@ -18,7 +18,5 @@ class MyUserCreationForm(UserCreationForm):
         if not first_name and not last_name:
             errors.append(ValidationError("One of the fields (first_name, last_name) must be filled in."))
         if errors:
-            raise ValidationError("One of the fields (first_name, last_name) must be filled in.")
+            raise ValidationError(errors)
         return cleaned_data
-
-

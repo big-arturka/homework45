@@ -97,3 +97,9 @@ body {
     margin-right: 5px;
     margin-bottom: 10px;
 }
+
+.error {
+    font-weight: bold;
+    color: red;
+    margin-top: 2px;
+}
