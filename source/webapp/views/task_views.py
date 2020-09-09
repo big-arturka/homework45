@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
@@ -18,10 +18,15 @@ class TaskView(DetailView):
         return context
 
 
-class TaskCreateView(LoginRequiredMixin, CreateView):
+class TaskCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'task/task_create.html'
     form_class = TaskForm
     model = Task
+    permission_required = 'webapp.add_task'
+
+    def has_permission(self):
+        project = self.get_object()
+        return super().has_permission() or self.request.user in project.user.all()
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
@@ -32,10 +37,15 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
         return redirect('project_view', pk=project.pk)
 
 
-class TaskUpdateView(LoginRequiredMixin, UpdateView):
+class TaskUpdateView(PermissionRequiredMixin, UpdateView):
     model = Task
     template_name = 'task/task_update.html'
     form_class = TaskForm
+    permission_required = 'webapp.change_task'
+
+    def has_permission(self):
+        project = self.get_object()
+        return super().has_permission() or self.request.user in project.user.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -50,8 +60,13 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
                                             'project_pk': self.kwargs.get('project_pk')})
 
 
-class TaskDeleteView(LoginRequiredMixin, DeleteView):
+class TaskDeleteView(PermissionRequiredMixin, DeleteView):
     model = Task
+    permission_required = 'webapp.delete_task'
+
+    def has_permission(self):
+        project = self.get_object()
+        return super().has_permission() or self.request.user in project.user.all()
 
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)

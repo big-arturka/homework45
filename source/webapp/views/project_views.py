@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.shortcuts import redirect, get_object_or_404
@@ -47,34 +47,50 @@ class ProjectView(DetailView):
             return tasks, None, False
 
 
-class ProjectCreateView(LoginRequiredMixin, CreateView):
+class ProjectCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'project/project_create.html'
     form_class = ProjectForm
     model = Project
+    permission_required = 'webapp.add_project'
 
     def get_success_url(self):
         return reverse('project_view', kwargs={'pk': self.object.pk})
 
 
-class ProjectUpdateView(LoginRequiredMixin, UpdateView):
+class ProjectUpdateView(PermissionRequiredMixin, UpdateView):
     template_name = 'project/project_update.html'
     form_class = ProjectForm
     model = Project
+    permission_required = 'webapp.change_project'
+
+    def has_permission(self):
+        project = self.get_object()
+        return super().has_permission() or self.request.user in project.user.all()
 
     def get_success_url(self):
         return reverse('project_view', kwargs={'pk': self.object.pk})
 
 
-class ProjectDeleteView(LoginRequiredMixin, DeleteView):
+class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'project/project_delete.html'
     model = Project
     success_url = reverse_lazy('index')
+    permission_required = 'webapp.delete_project'
+
+    def has_permission(self):
+        project = self.get_object()
+        return super().has_permission() or self.request.user in project.user.all()
 
 
-class ProjectUserUpdate(UpdateView):
+class ProjectUserUpdate(PermissionRequiredMixin, UpdateView):
     template_name = 'project/project_users.html'
     model = Project
     form_class = ProjectUsersForm
+    permission_required = 'webapp.change_project'
+
+    def has_permission(self):
+        project = self.get_object()
+        return super().has_permission() or self.request.user in project.user.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

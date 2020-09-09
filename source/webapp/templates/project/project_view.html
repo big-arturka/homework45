@@ -18,6 +18,7 @@
             <div class="users">
                 <p>
                     Участники проекта: {% for item in project.user.all %}<b>{{ item.first_name }} {{ item.last_name }}</b>{% if not forloop.last %}, {% endif %}{% endfor %}
+                    <a href="{% url 'users_add' project.pk %}" class="btn btn-primary">Изменить состав</a>
                 </p>
             </div>
             <div class="card-body">
