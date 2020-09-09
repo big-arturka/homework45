@@ -19,22 +19,22 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url "index" %}">ToDo</a>
                     </li>
-                    {% if request.user.is_authenticated %}
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'project_create' %}">Добавить новый проект</a>
                     </li>
+
                     {% block menu %}{% endblock %}
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'login' %}">Войти</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'accounts:create' %}?next={{ request.get_full_path }}">Sign Up</a>
-                        </li>
-                    {% endif %}
+
+                    {% block auth_menu %}
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item active"><a class="nav-link" href="#">Привет, {{ request.user.get_full_name|default:request.user.username }}</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="{% url 'accounts:logout' %}">Выйти</a></li>
+                        {% else %}
+                            <li class="nav-item active"><a class="nav-link" href="{% url 'accounts:login' %}">Войти</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="{% url 'accounts:create' %}?next={{ request.get_full_path }}">Sign Up</a></li>
+                        {% endif %}
+                    {% endblock %}
+
                 </ul>
                 {% block search %}
                 {% endblock %}
