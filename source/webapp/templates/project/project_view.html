@@ -15,6 +15,11 @@
             <div class="card-header">
                 <h4 class="card-title">{{ project.name }}</h4>
             </div>
+            <div class="users">
+                <p>
+                    Участники проекта: {% for item in project.user.all %}<b>{{ item.first_name }} {{ item.last_name }}</b>{% if not forloop.last %}, {% endif %}{% endfor %}
+                </p>
+            </div>
             <div class="card-body">
                 <p class="card-text">Описание: {{ project.description }}</p>
                 <a href="{% url 'index' %}" class="btn btn-primary" >На главную</a>

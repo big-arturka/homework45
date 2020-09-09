@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from webapp.views import IndexView, ProjectView, ProjectCreateView, ProjectUpdateView, ProjectDeleteView
+from webapp.views import IndexView, ProjectView, ProjectCreateView, ProjectUpdateView, ProjectDeleteView, \
+    ProjectUserUpdate
 from webapp.views.task_views import TaskCreateView, TaskView, TaskUpdateView, TaskDeleteView
 
 from django.contrib.auth.views import LoginView, LogoutView
@@ -32,6 +33,8 @@ urlpatterns = [
     path('project/<int:project_pk>/task/<int:pk>', TaskView.as_view(), name='task_view'),
     path('project/<int:project_pk>/task/<int:pk>/edit/', TaskUpdateView.as_view(), name='task_update'),
     path('project/<int:project_pk>/task/<int:pk>/delete/', TaskDeleteView.as_view(), name='task_delete'),
+
+    path('project/<int:pk>/users/', ProjectUserUpdate.as_view(), name='users_add'),
 
     path('accounts/login/', LoginView.as_view(), name='login'),
     path('accounts/logout/', LogoutView.as_view(), name='logout'),

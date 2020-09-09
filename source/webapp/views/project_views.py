@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 
-from webapp.forms import ProjectForm
+from webapp.forms import ProjectForm, ProjectUsersForm
 from webapp.models import Project
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -13,7 +14,6 @@ class IndexView(ListView):
     context_object_name = 'projects'
     paginate_by = 3
     paginate_orphans = 1
-
 
     def get_queryset(self):
         return Project.objects.all()
@@ -69,3 +69,17 @@ class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'project/project_delete.html'
     model = Project
     success_url = reverse_lazy('index')
+
+
+class ProjectUserUpdate(UpdateView):
+    template_name = 'project/project_users.html'
+    model = Project
+    form_class = ProjectUsersForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = User
+        return context
+
+    def get_success_url(self):
+        return reverse('project_view', kwargs={'pk': self.object.pk})

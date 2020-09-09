@@ -26,3 +26,11 @@ class ProjectForm(forms.ModelForm):
                    'start_date': forms.SelectDateWidget(attrs={'class': 'date-form'}),
                    'end_date': forms.SelectDateWidget(attrs={'class': 'date-form'}),
                    }
+
+
+class ProjectUsersForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['user']
+        widgets = {'user': forms.CheckboxSelectMultiple(attrs={'class': 'radio-btn'})
+                   }

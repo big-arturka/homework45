@@ -48,8 +48,7 @@ class Task(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=200, verbose_name='Название')
     description = models.TextField(max_length=2000, verbose_name='Описание')
-    user = models.ForeignKey(get_user_model(), on_delete=models.SET_DEFAULT, default=1,
-                             related_name='projects', verbose_name='Пользователь')
+    user = models.ManyToManyField(get_user_model(), related_name='projects', verbose_name='Пользователь')
     start_date = models.DateField(verbose_name='Дата старта', default=timezone.now)
     end_date = models.DateField(verbose_name='Дата закрытия', null=True, blank=True)
 
