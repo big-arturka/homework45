@@ -18,8 +18,12 @@
             <p class="card-text"><p>Тип: {% for item in task.task_type.all %}{{ item.type }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
             <a href="{% url 'project_view' project.pk %}" class="btn btn-primary" >Назад</a>
             <a href="{% url 'index' %}" class="btn btn-primary" >На главную</a> ||
-            <a href="{% url 'task_update' project.pk task.pk %}" class="btn btn-primary">Изменить</a>
-            <a href="{% url 'task_delete' project.pk task.pk %}" class="btn btn-primary">Удалить</a>
+            {% if perms.webapp.change_task or request.user in project.user.all %}
+                <a href="{% url 'task_update' project.pk task.pk %}" class="btn btn-primary">Изменить</a>
+            {% endif %}
+            {% if perms.webapp.delete_task or request.user in project.user.all %}
+                <a href="{% url 'task_delete' project.pk task.pk %}" class="btn btn-primary">Удалить</a>
+            {% endif %}
         </div>
         <div class="card-footer text-muted">
             Дата создания: {{ task.created_at }}
