@@ -25,8 +25,8 @@ class TaskCreateView(PermissionRequiredMixin, CreateView):
     permission_required = 'webapp.add_task'
 
     def has_permission(self):
-        project = self.get_object()
-        return super().has_permission() or self.request.user in project.user.all()
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        return super().has_permission() and self.request.user in project.user.all()
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
@@ -44,8 +44,8 @@ class TaskUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.change_task'
 
     def has_permission(self):
-        project = self.get_object()
-        return super().has_permission() or self.request.user in project.user.all()
+        project = get_object_or_404(Project, pk=self.kwargs.get('project_pk'))
+        return super().has_permission() and self.request.user in project.user.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -65,8 +65,8 @@ class TaskDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = 'webapp.delete_task'
 
     def has_permission(self):
-        project = self.get_object()
-        return super().has_permission() or self.request.user in project.user.all()
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        return super().has_permission() and self.request.user in project.user.all()
 
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)

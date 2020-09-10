@@ -6,7 +6,6 @@
 {% block search %}
 {% endblock %}
 
-
 {% block content %}
     <div class="main_page">
         <h1 class="title">To-Do List</h1>
@@ -16,8 +15,12 @@
                 <div class="card-body">
                     <h5 class="card-title">Название проекта: {{ project.name }}</h5>
                     <a href="{% url 'project_view' project.pk %}" class="btn btn-primary">Подробнее</a>
-                    <a href="{% url 'project_update' project.pk %}" class="btn btn-primary">Обновить</a>
-                    <a href="{% url 'project_delete' project.pk %}" class="btn btn-primary">Удалить</a>
+                    {% if perms.webapp.change_project %}
+                        <a href="{% url 'project_update' project.pk %}" class="btn btn-primary">Обновить</a>
+                    {% endif %}
+                    {% if perms.webapp.delete_project %}
+                        <a href="{% url 'project_delete' project.pk %}" class="btn btn-primary">Удалить</a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

@@ -58,3 +58,5 @@ class Project(models.Model):
     class Meta:
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
+        permissions = [('can_change_group', 'Может изменить состав группы')]
+
