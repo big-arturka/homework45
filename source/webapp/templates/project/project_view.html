@@ -3,7 +3,6 @@
 
 {% block auth_menu %}
     {% if request.user.is_authenticated %}
-        <li class="nav-item active"><a class="nav-link" href="#">Привет, {{ request.user.get_full_name|default:request.user.username }}</a></li>
         {% if perms.webapp.add_task and request.user in project.user.all %}
             <a href="{% url "task_create" project.pk %}" class="nav-link active">Добавить новую задачу</a>
         {% endif %}
@@ -24,7 +23,10 @@
             </div>
             <div class="users">
                 <p>
-                    Участники проекта: {% for item in project.user.all %}<b>{{ item.first_name }} {{ item.last_name }}</b>{% if not forloop.last %}, {% endif %}{% endfor %}
+                    Участники проекта: {% for item in project.user.all %}<b>
+                    <a class="nav-link" href="{% url 'accounts:detail' request.user.pk %}">
+                        {{ item.first_name }} {{ item.last_name }}
+                    </a></b>{% if not forloop.last %}, {% endif %}{% endfor %}
                     {% if perms.webapp.can_change_group and request.user in project.user.all %}
                         <a href="{% url 'users_add' project.pk %}" class="btn btn-primary">Изменить состав</a>
                     {% endif %}

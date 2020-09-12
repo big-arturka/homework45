@@ -103,3 +103,11 @@ body {
     color: red;
     margin-top: 2px;
 }
+
+.link {
+    color: black;
+}
+
+.link:hover {
+    color: black;
+}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Project{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="title">Users</h1>
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Username</th>
+                </tr>
+            </thead>
+            {% for user in users %}
+                    <tbody>
+                        <tr>
+                        <th scope="row">{{ user.pk }}</th>
+                        <td><a class="link" href="{% url 'accounts:detail' request.user.pk %}">{{ user.first_name }}</a></td>
+                        <td><a class="link" href="{% url 'accounts:detail' request.user.pk %}">{{ user.last_name }}</a></td>
+                        <td><a class="link" href="{% url 'accounts:detail' request.user.pk %}">{{ user.username }}</a></td>
+                        </tr>
+                    </tbody>
+            {% endfor %}
+        </table>
+
+    </div>
+{% endblock %}

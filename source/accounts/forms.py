@@ -2,6 +2,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.core.exceptions import ValidationError
 
+from accounts.models import Profile
+
 
 class MyUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, label='Email')
@@ -20,3 +22,8 @@ class MyUserCreationForm(UserCreationForm):
         if errors:
             raise ValidationError(errors)
         return cleaned_data
+
+    def save(self, commit=True):
+        user = super().save(commit=commit)
+        Profile.objects.create(user=user)
+        return user

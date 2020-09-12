@@ -10,23 +10,6 @@
 
     <p>Участники проекта</p>
 
-{#        <form action="{% url 'users_add' project.pk %}" method="post">#}
-{#            {% csrf_token %}#}
-{#            <h3>Добавление и удаление пользователей</h3>#}
-{#            {% for user in users %}#}
-{#                <p>#}
-{#                    <label for="selected_users-{{ user.pk }}">Select:</label>#}
-{#                    <input type="checkbox" name="selected_users" id="selected_users-{{ user.pk }}" value="{{ user.first_name }} {{ user.last_name }}">#}
-{#                </p>#}
-{##}
-{#                <br>#}
-{#            {% endfor %}#}
-{#            <input type="submit" class="btn btn-primary" value="Добавить"/>#}
-{#            <a href="{% url "index" %}" class="btn btn-primary">На главную</a>#}
-{#            <input class="btn btn-primary" type="submit" name="changes" value="Save changes">#}
-{#        </form>#}
-
-
         {% url 'users_add' project.pk as action_url %}
         {% include 'partial/form.html' with action_url=action_url form_method='post' button_text='Сохранить'%}
 
