@@ -51,7 +51,7 @@ class UsersListView(PermissionRequiredMixin, ListView):
     context_object_name = 'users'
     paginate_by = 3
     paginate_orphans = 1
-    permission_required = 'webapp.user_view'
+    permission_required = 'auth.view_user'
 
     def get_queryset(self):
         return User.objects.all()
