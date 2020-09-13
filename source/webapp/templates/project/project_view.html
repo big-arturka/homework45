@@ -22,7 +22,9 @@
                 <h4 class="card-title">{{ project.name }}</h4>
             </div>
             <div class="users">
-                <p>Участники проекта: {% for item in project.user.all %}<b><a class="nav-link" href="{% url 'accounts:detail' request.user.pk %}">{{ item.first_name }} {{ item.last_name }}</a></b>{% endfor %}
+                <p>Участники проекта: {% for item in project.user.all %}
+                                        <b><a class="nav-link" href="{% url 'accounts:detail' item.pk %}">{{ item.first_name }} {{ item.last_name }}</a></b>
+                                      {% endfor %}
                     {% if perms.webapp.can_change_group and request.user in project.user.all %}
                         <a href="{% url 'users_add' project.pk %}" class="btn btn-primary">Изменить состав</a>
                     {% endif %}

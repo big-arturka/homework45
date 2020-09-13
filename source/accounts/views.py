@@ -49,8 +49,8 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 class UsersListView(PermissionRequiredMixin, ListView):
     template_name = 'users/users_view.html'
     context_object_name = 'users'
-    paginate_by = 3
-    paginate_orphans = 1
+    paginate_by = 10
+    paginate_orphans = 4
     permission_required = 'auth.view_user'
 
     def get_queryset(self):
