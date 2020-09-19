@@ -1,5 +1,45 @@
 [
 {
+  "model": "accounts.profile",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "github": "https://github.com/admin/",
+    "vita": "\u0410\u0434\u043c\u0435\u043d \u044d\u0442\u043e\u0433\u043e \u0441\u0430\u0439\u0442\u0430",
+    "avatar": "user_pics/admin.jpg"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 2,
+  "fields": {
+    "user": 8,
+    "github": "https://github.com/dev/",
+    "vita": "\u0427\u0442\u043e \u0445\u043e\u0447\u0443, \u0442\u043e \u043f\u0438\u0448\u0443",
+    "avatar": "user_pics/dev.jpg"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 3,
+  "fields": {
+    "user": 9,
+    "github": "https://github.com/lead/",
+    "vita": "\u041a\u0430\u043f\u0438\u0442\u0430\u043d \u043a\u043e\u0440\u043e\u0431\u043b\u044f",
+    "avatar": "user_pics/cap.jpg"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 4,
+  "fields": {
+    "user": 10,
+    "github": "https://github.com/manager/",
+    "vita": "\u0417\u0434\u0440\u0430\u0432\u0441\u0442\u0432\u0443\u0439\u0442\u0435, \u044f \u0438\u0437 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438 oriflame",
+    "avatar": "user_pics/man.jpg"
+  }
+},
+{
   "model": "webapp.status",
   "pk": 1,
   "fields": {

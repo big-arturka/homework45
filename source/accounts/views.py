@@ -1,12 +1,11 @@
 from django.contrib.auth import login, get_user_model, update_session_auth_hash
-from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
-from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, FormView
+from django.urls import reverse
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from accounts.forms import MyUserCreationForm, UserChangeForm, PasswordChangeForm, ProfileChangeForm
 
