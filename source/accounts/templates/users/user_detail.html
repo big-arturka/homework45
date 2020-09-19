@@ -21,7 +21,9 @@
     <p>Имя пользователя: {{ user_obj.username }}</p>
     <p>Имя: {{ user_obj.first_name }}</p>
     <p>Фамилия: {{ user_obj.last_name }}</p>
-    <p>Ссылка на GitHub: <a href="{{ user_obj.profile.github}}"> {{ user_obj.profile.github}}</a></p>
+    <p>Ссылка на GitHub:{% if user_obj.profile.github %}<a href="{{ user_obj.profile.github}}"> {{ user_obj.profile.github}}</a></p>{% else %}
+        (Отсутствует)
+    {% endif %}
     <p>Почта: {{ user_obj.email }}</p>
 
     <h2 class="text-center clear">Проекты: </h2>
