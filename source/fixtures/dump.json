@@ -40,6 +40,16 @@
   }
 },
 {
+  "model": "accounts.profile",
+  "pk": 5,
+  "fields": {
+    "user": 11,
+    "github": null,
+    "vita": null,
+    "avatar": ""
+  }
+},
+{
   "model": "webapp.status",
   "pk": 1,
   "fields": {
