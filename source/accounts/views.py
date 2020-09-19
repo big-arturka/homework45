@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, FormView
 
-from accounts.forms import MyUserCreationForm
+from accounts.forms import MyUserCreationForm, UserChangeForm, PasswordChangeForm, ProfileChangeForm
 
 
 class RegisterView(CreateView):
@@ -53,7 +53,7 @@ class UsersListView(PermissionRequiredMixin, ListView):
     context_object_name = 'users'
     paginate_by = 10
     paginate_orphans = 4
-    permission_required = 'auth.view_user'
+    permission_required = 'accounts.can_view_users'
 
     def get_queryset(self):
         return User.objects.all()
@@ -62,7 +62,7 @@ class UsersListView(PermissionRequiredMixin, ListView):
 class UserChangeView(UserPassesTestMixin, UpdateView):
     model = get_user_model()
     form_class = UserChangeForm
-    template_name = 'user_change.html'
+    template_name = 'users/user_change.html'
     context_object_name = 'user_obj'
 
     def test_func(self):
@@ -104,7 +104,7 @@ class UserChangeView(UserPassesTestMixin, UpdateView):
 
 class UserPasswordChangeView(LoginRequiredMixin, UpdateView):
     model = get_user_model()
-    template_name = 'user_password_change.html'
+    template_name = 'users/user_password_change.html'
     form_class = PasswordChangeForm
     context_object_name = 'user_obj'
 
