@@ -3,12 +3,14 @@
 {% block title %}Пользователь{% endblock %}
 
 {% block menu %}
-    <li class="nav-item active">
-        <a class="nav-link" href="{% url 'accounts:change' user_obj.pk %}">Редактировать</a>
-    </li>
-    <li class="nav-item active">
-        <a class="nav-link" href="{% url 'accounts:password_change' %}">Смена пароля</a>
-    </li>
+    {% if request.user == user_obj %}
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'accounts:change' user_obj.pk %}">Редактировать</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'accounts:password_change' %}">Смена пароля</a>
+        </li>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
