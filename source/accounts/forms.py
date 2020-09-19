@@ -1,4 +1,5 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
 from django import forms
 from django.core.exceptions import ValidationError
 
@@ -27,3 +28,30 @@ class MyUserCreationForm(UserCreationForm):
         user = super().save(commit=commit)
         Profile.objects.create(user=user)
         return user
+
+
+class UserChangeForm(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['first_name', 'last_name', 'email']
+        labels = {'first_name': 'Имя', 'last_name': 'Фамилия', 'email': 'Email'}
+
+
+class ProfileChangeForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['user']
+
+
+class PasswordChangeForm(SetPasswordForm):
+    old_password = forms.CharField(label="Старый пароль", strip=False, widget=forms.PasswordInput)
+
+    def clean_old_password(self):
+        old_password = self.cleaned_data.get('old_password')
+        if not self.instance.check_password(old_password):
+            raise forms.ValidationError('Старый пароль неправильный!')
+        return old_password
+
+    class Meta:
+        model = get_user_model()
+        fields = ['password', 'password_confirm', 'old_password']
