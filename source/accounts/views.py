@@ -101,11 +101,14 @@ class UserChangeView(UserPassesTestMixin, UpdateView):
         return ProfileChangeForm(**form_kwargs)
 
 
-class UserPasswordChangeView(LoginRequiredMixin, UpdateView):
+class UserPasswordChangeView(UserPassesTestMixin, UpdateView):
     model = get_user_model()
     template_name = 'users/user_password_change.html'
     form_class = PasswordChangeForm
     context_object_name = 'user_obj'
+
+    def test_func(self):
+        return self.request.user == self.get_object()
 
     def get_object(self, queryset=None):
         return self.request.user
